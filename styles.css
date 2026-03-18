@@ -1,3 +1,15 @@
+:root {
+  --pg-dark: #07224e;     /* Azul oscuro Pokémon GO */ 
+  --pg-blue: #3b4cca;     /* Azul Pokémon */ 
+  --pg-yellow: #ffcb08;   /* Amarillo Pokémon GO */ 
+  --pg-red: #ff4b5c;
+  --pg-green: #34d399;
+  --pg-purple: #a855f7;
+  --pg-bg: #020617;
+  --pg-card-bg: rgba(15, 23, 42, 0.7);
+}
+
+/* Reset básico */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,41 +18,156 @@
 }
 
 body {
-  background: #0f172a;
-  color: #e5e7eb;
   min-height: 100vh;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+  color: #e5e7eb;
+  overflow-x: hidden;
+  position: relative;
 }
 
+/* Orbes de fondo estilo aura */
+.bg-orb {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bg-orb-1 {
+  width: 320px;
+  height: 320px;
+  background: #3b4cca;
+  top: -80px;
+  left: -60px;
+}
+
+.bg-orb-2 {
+  width: 260px;
+  height: 260px;
+  background: #ffcb08;
+  top: 40%;
+  right: -80px;
+}
+
+.bg-orb-3 {
+  width: 260px;
+  height: 260px;
+  background: #14b8a6;
+  bottom: -60px;
+  left: 10%;
+}
+
+/* Header */
 .header {
-  padding: 2rem 1.5rem;
+  padding: 1.8rem 1.5rem 1.2rem;
   text-align: center;
-  background: radial-gradient(circle at top, #1d4ed8, #020617);
-  border-bottom: 1px solid #1f2937;
 }
 
-.header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: radial-gradient(circle at top left,
+    rgba(255, 255, 255, 0.15),
+    rgba(15, 23, 42, 0.8));
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.8),
+              0 18px 60px rgba(0, 0, 0, 0.75);
+}
+
+.logo-pill span {
+  font-weight: 600;
+}
+
+.pokeball {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #ffcb08 60%, #eab308 100%);
+  border: 2px solid #0f172a;
+  display: inline-block;
+  box-shadow: 0 0 0 2px #0f172a, 0 0 12px rgba(248, 250, 252, 0.8);
 }
 
 .header p {
+  margin-top: 0.9rem;
   color: #9ca3af;
+  font-size: 0.95rem;
 }
 
+/* Contenedor de comandos */
 .commands {
-  max-width: 900px;
-  margin: 2rem auto;
+  max-width: 960px;
+  margin: 0 auto 3rem;
   padding: 0 1.5rem 3rem;
-  display: grid;
-  gap: 1.5rem;
 }
 
+/* Chips de filtro */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 1.4rem;
+}
+
+.chip {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.7);
+  color: #e5e7eb;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.chip:hover {
+  background: rgba(30, 64, 175, 0.7);
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.chip-active {
+  background: linear-gradient(135deg, #3b4cca, #1d4ed8);
+  border-color: #ffcb08;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.7);
+}
+
+/* Tarjetas de comando con glassmorphism */
 .command-card {
-  background: #020617;
-  border-radius: 0.75rem;
-  border: 1px solid #1f2937;
-  padding: 1rem 1.25rem 1.25rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  background: var(--pg-card-bg);
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 1rem 1.1rem 1.2rem;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  position: relative;
+  overflow: hidden;
+}
+
+.command-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(circle at top right,
+    rgba(255, 203, 8, 0.22),
+    transparent 55%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.command-card:hover::before {
+  opacity: 1;
 }
 
 .command-header {
@@ -48,7 +175,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.7rem;
 }
 
 .command-header h2 {
@@ -56,34 +183,94 @@ body {
   font-weight: 600;
 }
 
-.copy-btn {
-  background: #1d4ed8;
-  color: #e5e7eb;
-  border: none;
-  padding: 0.4rem 0.8rem;
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+}
+
+.tag-gold {
+  background: rgba(255, 203, 8, 0.15);
+  border-color: rgba(255, 203, 8, 0.7);
+  color: #facc15;
+}
+
+.tag-blue {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(59, 130, 246, 0.7);
+  color: #93c5fd;
+}
+
+.tag-green {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(34, 197, 94, 0.7);
+  color: #6ee7b7;
+}
+
+.tag-purple {
+  background: rgba(168, 85, 247, 0.16);
+  border-color: rgba(168, 85, 247, 0.7);
+  color: #e9d5ff;
+}
+
+.tag-red {
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.7);
+  color: #fecaca;
+}
+
+/* Botón copiar estilo neon Pokémon */
+.copy-btn {
+  background: transparent;
+  color: #e5e7eb;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  transition: background 0.15s ease, transform 0.1s ease;
+  gap: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.08s ease;
+  box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+}
+
+.copy-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #3b4cca, #2563eb, #ffcb08);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  z-index: -1;
 }
 
 .copy-btn:hover {
-  background: #2563eb;
+  color: #0b1120;
+  border-color: transparent;
   transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.8),
+              0 0 40px rgba(37, 99, 235, 0.7);
 }
 
-.copy-btn:active {
-  transform: translateY(0);
+.copy-btn:hover::before {
+  opacity: 1;
 }
 
 pre {
-  background: #020617;
-  border-radius: 0.5rem;
-  border: 1px solid #111827;
-  padding: 0.75rem;
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 0.6rem;
+  border: 1px solid rgba(15, 23, 42, 0.9);
+  padding: 0.65rem 0.75rem;
   overflow-x: auto;
   font-size: 0.9rem;
   color: #e5e7eb;
@@ -94,23 +281,23 @@ pre code {
 }
 
 .description {
-  margin-top: 0.5rem;
+  margin-top: 0.55rem;
   font-size: 0.85rem;
   color: #9ca3af;
 }
 
-/* Toast de feedback */
+/* Toast */
 .toast {
   position: fixed;
   left: 50%;
   bottom: 1.5rem;
   transform: translateX(-50%) translateY(150%);
-  background: #16a34a;
-  color: #ecfdf5;
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+  color: #052e16;
   padding: 0.7rem 1.2rem;
   border-radius: 999px;
   font-size: 0.85rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: opacity 0.2s ease, transform 0.2s ease;
   z-index: 50;
@@ -119,4 +306,11 @@ pre code {
 .toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive */
+@media (min-width: 720px) {
+  .commands {
+    padding-bottom: 4rem;
+  }
 }
