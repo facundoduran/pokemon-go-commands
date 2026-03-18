@@ -188,3 +188,19 @@ pre code {
     padding: 1.25rem;
   }
 }
+
+/* Badges tipo Pokémon */
+.type-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.type-grass { background: var(--type-grass); color: white; }
+.type-fire { background: var(--type-fire); color: white; }
+.type-water { background: var(--type-water); color: white; }
+.type-electric { background: var(--type-electric); color: #1e293b; }
