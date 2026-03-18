@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mis comandos útiles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Mis comandos útiles</h1>
+    <p>Haz clic en “Copiar” para guardar el comando en el portapapeles.</p>
+  </header>
+
+  <main class="commands">
+    <!-- Card de comando -->
+    <article class="command-card">
+      <div class="command-header">
+        <h2>Listar archivos (Linux)</h2>
+        <button class="copy-btn" data-command="ls -la">
+          Copiar
+        </button>
+      </div>
+      <pre><code>ls -la</code></pre>
+      <p class="description">Lista todos los archivos con detalles.</p>
+    </article>
+
+    <article class="command-card">
+      <div class="command-header">
+        <h2>Ver procesos (Linux)</h2>
+        <button class="copy-btn" data-command="ps aux | grep nombre_proceso">
+          Copiar
+        </button>
+      </div>
+      <pre><code>ps aux | grep nombre_proceso</code></pre>
+      <p class="description">Busca procesos por nombre.</p>
+    </article>
+
+    <!-- Agrega más comandos repitiendo el patrón de la card -->
+  </main>
+
+  <div id="toast" class="toast">Comando copiado ✅</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
