@@ -2,45 +2,71 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Mis comandos útiles</title>
+  <title>Comandos Pokémon GO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+
   <header class="header">
-    <h1>Mis comandos útiles</h1>
-    <p>Haz clic en “Copiar” para guardar el comando en el portapapeles.</p>
+    <div class="logo-pill">
+      <span class="pokeball">●</span>
+      <span>Comandos Pokémon GO</span>
+    </div>
+    <p>Atajos útiles para raids, PvP, gestión de bolsa y más.</p>
   </header>
 
   <main class="commands">
-    <!-- Card de comando -->
+    <!-- Filtro de ejemplo, solo visual (no funcional aún) -->
+    <section class="filters">
+      <button class="chip chip-active">Todos</button>
+      <button class="chip">Bolsa</button>
+      <button class="chip">Raids</button>
+      <button class="chip">PvP</button>
+      <button class="chip">Gestión Pokémon</button>
+    </section>
+
+    <!-- Ejemplos de comandos de búsqueda avanzada / filtros -->
     <article class="command-card">
       <div class="command-header">
-        <h2>Listar archivos (Linux)</h2>
-        <button class="copy-btn" data-command="ls -la">
+        <div>
+          <h2>Pokémon 4★ (perfectos)</h2>
+          <span class="tag tag-gold">IV 100</span>
+        </div>
+        <button class="copy-btn" data-command="4*">
           Copiar
         </button>
       </div>
-      <pre><code>ls -la</code></pre>
-      <p class="description">Lista todos los archivos con detalles.</p>
+      <pre><code>4*</code></pre>
+      <p class="description">Muestra solo los Pokémon con IV 100% en tu colección.</p>
     </article>
 
     <article class="command-card">
       <div class="command-header">
-        <h2>Ver procesos (Linux)</h2>
-        <button class="copy-btn" data-command="ps aux | grep nombre_proceso">
+        <div>
+          <h2>Pokémon para evolucionar (XP)</h2>
+          <span class="tag tag-blue">XP Farm</span>
+        </div>
+        <button class="copy-btn" data-command="evoluciona&!legendario&!mitico">
           Copiar
         </button>
       </div>
-      <pre><code>ps aux | grep nombre_proceso</code></pre>
-      <p class="description">Busca procesos por nombre.</p>
+      <pre><code>evoluciona&amp;!legendario&amp;!mitico</code></pre>
+      <p class="description">Filtra Pokémon que puedes evolucionar y que no son legendarios ni míticos.</p>
     </article>
 
-    <!-- Agrega más comandos repitiendo el patrón de la card -->
-  </main>
-
-  <div id="toast" class="toast">Comando copiado ✅</div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    <article class="command-card">
+      <div class="command-header">
+        <div>
+          <h2>Pokémon aptos para PvP</h2>
+          <span class="tag tag-green">PvP</span>
+        </div>
+        <button class="copy-btn" data-command="atq1-3&def1-3&ps1-3&!legendario">
+          Copiar
+        </button>
+      </div>
+      <pre><code>atq1-3&amp;def1-3&amp;ps1-3&amp;!legendario</code></pre>
+      <p class="description">Ejemplo de filtro para buscar posibles candidatos para PvP (bajo ataque, defensivos).</p>
