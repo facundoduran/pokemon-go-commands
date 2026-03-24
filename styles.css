@@ -5,6 +5,16 @@
   padding: 0;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Por si hay algo raro flotando afuera */
+img, pre, code {
+  max-width: 100%;
+}
+
 :root {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
@@ -65,23 +75,33 @@ body {
   margin: 0 auto;
 }
 
-/* Contenedor principal */
+/* Contenedor principal responsive */
 .commands {
   max-width: 1200px;
   margin: 2rem auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
+  grid-template-columns: 1fr;          /* 1 columna en móvil */
 }
 
-/* Cards tipo pokemongohub */
+/* Cards: que nunca sobrepasen el ancho */
 .command-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  transition: box-shadow 0.2s ease, transform 0.1s ease;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Responsive en pantallas medianas y grandes */
+@media (min-width: 640px) {
+  .commands {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .commands {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .command-card:hover {
